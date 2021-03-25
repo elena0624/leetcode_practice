@@ -6,7 +6,7 @@
 1. 動態規劃問題
       | #  | Problem  | Status |
       | --------  | -------- | -------- |
-      | 5	| Longest Palindromic Substring          |      |
+      | 5	| Longest Palindromic Substring          | V     |
       | 10	| Regular Expression Matching              |      |
       | 42	| Trapping Rain Water              |      |
       | 44	| Wildcard Matching              |      |
