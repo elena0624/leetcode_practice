@@ -137,3 +137,40 @@ for i in range(len(A)):
 #        print('index2',index2)
 #        print('temp_A',temp_A)
 print(temp_A)
+
+#%% 稍微優化
+#A = [2,7,11,15]
+#B = [1,10,4,11]
+##
+#A = [12,24,8,32]
+#B = [13,25,32,11]
+
+A = [6,3,5,2,4]
+B = [9,10,7,1,8]
+
+
+A_sorted = sorted(A)
+B_argsort = [i for (v, i) in sorted((v, i) for (i, v) in enumerate(B))]
+B_sorted = sorted(B)
+temp_A = [None]*len(A)
+
+index=0
+index2=len(A)-1
+#front_get=0 # 從前面更幾次 其實會等於i前進的個數
+advantage_fail=0 #從後面更幾次 其實是advanrage失敗的個數
+
+for i in range(len(A)):
+    B_value = B_sorted[i]
+    while (A_sorted[index]<=B_value) and (index<len(A)-1):# 還沒找到且還有得找
+        temp_A[B_argsort[index2]] = A_sorted[index] # 直接補在後面
+        advantage_fail+= 1
+        if (i + advantage_fail)==len(A):
+            break
+        index += 1 #去找下一個
+        index2 -= 1 #後面已經補到哪一位
+    temp_A[B_argsort[i]]=A_sorted[index] # 跳出之後就可以存
+    index += 1
+    if (i+1 + advantage_fail)==len(A):
+        break
+print(temp_A)
+#print('advantage',len(A)-advantage_fail) # 有可能滿了就跳出 所以這個沒有狠準
