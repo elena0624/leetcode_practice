@@ -87,3 +87,6 @@ if str_len%2==1:
 else:
     print( s[even_idx_new[0]:even_idx_new[0]+str_len])
 print('跳出')
+
+#%% 想辦法簡化一下
+# 待努力...
