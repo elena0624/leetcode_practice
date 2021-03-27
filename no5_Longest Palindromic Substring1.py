@@ -90,3 +90,44 @@ print('跳出')
 
 #%% 想辦法簡化一下
 # 待努力...
+# 3/28 updated,套用	Palindromic Substrings解法的概念試試看
+#s = "bababc"
+
+#s = "cbbd"
+
+#s = "a"
+
+#s = "ac"
+
+s = "caaba"
+i=0
+all_long_len=1
+all_l=0
+while i<len(s):
+    print('i',i)
+    cur_long_len=1
+    r=i
+    l=i
+    while (r<len(s)-1 and s[r]==s[r+1]):
+        r+=1
+        cur_long_len+=1
+    i=r+1
+    print('i',i)
+    print('l',l)
+    print('r',r)
+    print('cur_long_len',cur_long_len)
+    while (l>0 and r<len(s)-1 and s[l-1]==s[r+1]):
+        print('l',l,'r',r)
+        print('s[l-1]',s[l-1],'s[r+1]',s[r+1])
+        l-=1
+        r+=1
+        cur_long_len+=2
+    print('cur_long_len',cur_long_len)
+    print('all_long_len',all_long_len)
+    if cur_long_len>all_long_len:
+        all_long_len=cur_long_len
+        all_l=l
+    
+print(s[all_l:all_l+all_long_len])
+        
+        
