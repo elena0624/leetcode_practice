@@ -51,3 +51,28 @@ class Solution: # fast!吧
             return( s[odd_idx_new[0]:odd_idx_new[0]+str_len])
         else:
             return( s[even_idx_new[0]:even_idx_new[0]+str_len])
+#%% 3/28 reference from palindromic substring brilliant solution NICE!!
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        if s==s[::-1]:
+            return(s)
+        i=0
+        all_long_len=1
+        all_l=0
+        while i<len(s):
+            cur_long_len=1
+            r=i
+            l=i
+            while (r<len(s)-1 and s[r]==s[r+1]):
+                r+=1
+                cur_long_len+=1
+            i=r+1
+            while (l>0 and r<len(s)-1 and s[l-1]==s[r+1]):
+                l-=1
+                r+=1
+                cur_long_len+=2
+            if cur_long_len>all_long_len:
+                all_long_len=cur_long_len
+                all_l=l
+
+        return(s[all_l:all_l+all_long_len])
