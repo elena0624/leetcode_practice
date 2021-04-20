@@ -40,7 +40,7 @@ class Solution:
             for i in range(len(cur.children),0,-1):
                 stack.append(cur.children[i-1])                
         return ans
-#%% Others' answer
+#%% Others' answer => recursive
 """
 # Definition for a Node.
 class Node:
@@ -60,5 +60,13 @@ class Solution:
             if c:
                 L += self.preorder(c)
                 
-        return L``
-
+        return L
+#%% Others' andswer => iterative
+class Solution(object):
+    def preorder(self, root):
+        ret, q = [], root and [root]
+        while q:
+            node = q.pop()
+            ret.append(node.val)
+            q += [child for child in node.children[::-1] if child]
+        return ret
