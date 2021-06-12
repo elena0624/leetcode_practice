@@ -102,3 +102,19 @@ class Solution:
                 dp[j] = max(new_run - dp[j], run_sum+v - dp[j - 1])#拿頭=不算起點的sum-前一輪的解;拿尾=不算起點也不算終點的sum+起點-前一輪-1的結果
                 run_sum = new_run#此輪不算起點的sum 
         return dp[n - 1]
+#%% My revised solution. Fast!
+class Solution:
+    def stoneGameVII(self, stones: List[int]) -> int:
+        n=len(stones)
+        parity=len(stones)%2
+        dp_l=stones.copy() if parity==0 else [0 for i in range(n+1)]
+        dp_c=[None for i in range(n+1)]
+        
+        for i in range(2,n+1):#長度
+            for l in range(n-i+1):#起點
+                if i%2+parity!=1:#alice拿
+                    dp_c[l]=max(dp_l[l],dp_l[l+1])            
+                else:# bob拿
+                    dp_c[l]=min(dp_l[l]+stones[l+i-1],dp_l[l+1]+stones[l])
+            dp_l=dp_c.copy()
+        return(dp_c[0])
